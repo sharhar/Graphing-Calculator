@@ -1,0 +1,58 @@
+package code.window;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class MainWindow extends JFrame {
+	private static final long serialVersionUID = 2996202720425593795L;
+	
+	private JPanel contentPane;
+	public boolean open = true;
+	public JTextArea textField;
+	public boolean calc = false;
+	public JTextArea textArea;
+
+	/**
+	 * Create the frame.
+	 */
+	public MainWindow() {
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		addWindowListener(new java.awt.event.WindowAdapter() {
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        dispose();
+		        open = false;
+		    }
+		});
+		
+		setBounds(100, 100, 450, 500);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		textField = new JTextArea();
+		textField.setBounds(10, 396, 326, 64);
+		contentPane.add(textField);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(10, 11, 424, 374);
+		contentPane.add(textArea);
+		
+		JButton btnNewButton = new JButton("Calculate");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				calc = true;
+			}
+		});
+		btnNewButton.setBounds(345, 397, 89, 63);
+		contentPane.add(btnNewButton);
+		setVisible(true);
+	}
+}
